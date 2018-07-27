@@ -2,7 +2,9 @@
 
 ## 地图
 ![](https://raw.githubusercontent.com/jinjiaKarl/MarkdownPhotos/master/photos/102.png)
+
  **金：23   木：85 水：30   火：12 土：32 保留地：81+18**
+ 
  每个资源包的数量是100000个。
 
 某地块产生的元素数量 = 该地块的元素包 * Scale
