@@ -66,7 +66,7 @@ A大陆边缘的4个点坐标： (-112,-22) (-112,22) (-68,22) (-68,-22)
 
 设地块坐标为（x1,y1）,距离此地块最近的（金山，森林，湖泊，火山，山）的坐标为（x2,y2），则(x1,y1)和（x2,y2）距离为
 
-![](https://raw.githubusercontent.com/jinjiaKarl/MarkdownPhotos/master/photos/103.png)
+![](https://lh6.googleusercontent.com/jflRUPmQ1LRE3uutEnM_Nt6LRvYb9fqYLYk1auOtM5NfL074q29MCUtuMncvyZN3CwB_GH1g9DxTavwan7SsQ2KMnwQ1Rtq_WaEagnHon75yaaD3ne2UXNbdWnQA8whh7DHxQSNi)
 
 距离小于等于3的时候，元素加成计算方法：
 
