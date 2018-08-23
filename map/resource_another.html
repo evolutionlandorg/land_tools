@@ -95,6 +95,7 @@
 
         // 初始化
         produceGold('211,144,0');
+        //produceGold('44,111,255');
         produceWood('4, 145, 117');
         produceWater('10, 152, 229');
         produceFire('255, 87, 34');
@@ -152,26 +153,42 @@
             resource.innerHTML = html
         }
 
+       // function produceGold(color){
+       //      var num = 0;
+       //      for(var i = 0; i < 100; i++){
+       //          num = num + 1/100;
+       //          t = String(num);
+       //          colorsGold.push(`rgba(${color},${t})`);
+       //      }
+       //  }
+
+       // 新的规则
+        // (255 - (rgb) * x%)
+        //  (12, 100, 150)
+        //  (rgb) = (255 - 12, 255-100, 255 - 150)
+
        function produceGold(color){
             var num = 0;
-            for(var i = 0; i < 100; i++){
-                num = num + 1/100;
-                t = String(num);
-                colorsGold.push(`rgba(${color},${t})`);
+            for(let i = 0; i < 100; i++){
+                num = num + 0.01;
+                if (num - 1 >= 0){
+                    num = 1;
+                }
+                var c = color.split(",");
+                var r = 255 - c[0] * num;
+                var g = 255 - c[1] * num;
+                var b = 255 - c[2] * num;
+                console.log(num);
+                console.log(r,g,b);
+                r = String(r);
+                g = String(g);
+                b = String(b);
+                colorsGold.push(`rgb(${r},${g},${b})`)
             }
-        }
+       }
+       console.log(colorsGold)
 
-        // gold中一共有gold.length个不同的元素，最大的元素的393
-       // function produceGold(color){
-       // 		var num = 0;
-       // 		for(let i = 0; i < gold.length; i++){
-       // 			num = (1 / 393) * gold[i];
-       // 			t = String(num);
-       // 			colorsGold.push(`rgba(${color},${t})`)
-       // 		}
 
-       // }
-        //console.log(colorsGold)
        function produceWood(color){
             var num = 0;
             for(var i = 0; i < 100; i++){
@@ -247,36 +264,31 @@
         }                                          
 
 
-        function setColorGold(num) {
+         function setColorGold(num) {
 
             
-             for(var i = 0; i < resGold.length; i++){
-                if (num > resGold[i]){
-                    return colorsGold[99-i];
-                }
-             }
+             // for(var i = 0; i < resGold.length; i++){
+             //    if (num > resGold[i]){
+             //        return colorsGold[99-i];
+             //    }
+             // }
 
-            // if (num > 0 && num < 50) {
-            //     return colorsGold[20]
-            // } else if (num >= 50 && num < 100){
-            //     return colorsGold[40]
-            // } else if (num >= 100 && num < 150) {
-            //     return colorsGold[60]
-            // } else if (num >= 150 && num < 300) {
-            //     return colorsGold[80]
-            // } else if (num >= 300 && num < 400) {
-            //     return colorsGold[99]
-            // } 
+            if (num > 0 && num < 50) {
+                return colorsGold[20]
+            } else if (num >= 50 && num < 100){
+                return colorsGold[40]
+            } else if (num >= 100 && num < 150) {
+                return colorsGold[60]
+            } else if (num >= 150 && num < 300) {
+                return colorsGold[80]
+            } else if (num >= 300 && num < 400) {
+                return colorsGold[99]
+            } 
+
+
             return false
         }
-        
-        // function  setColorGold(num){
-        // 	for(let i = 0; i < gold.length; i++){
-        // 		if(num === gold[i]){
-        // 			return colorsGold[i]	
-        // 		}
-        // 	}
-        // }
+
 
          function setColorWood(num) {
              for(var i = 0; i < resWood.length; i++){
