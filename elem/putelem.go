@@ -1,54 +1,24 @@
-package src
+package elem
 
 import (
+	"encoding/json"
+	"io/ioutil"
 	"math/rand"
 	"time"
-	"fmt"
-	"math"
-
 )
 
-var putMap = make(map[coordinate] [5]int)
+var putMap = make(map[Coordinate] [5]int)
 
 var leftNum = [5]int{100000,100000,100000,100000,100000}
 
-var uesdNum [5]int
 
-
-//var addiNum [5]int
-
-var all = [5]int{0,0,0,0,0}
-
-
-func Reservation( n coordinate){
+func Reservation( n Coordinate){
 
 	elemPut := [5]int{0}
-	// 利用时间作为随机数种子
-	//rand.Seed(time.Now().Unix())
-	d := rand.New(rand.NewSource(time.Now().UnixNano()))
 	//存放结果的slice
-	nums := make([]int, 0)
-	for i := 0; i < 10; i++{
-		// r 是生成0~5的随机数
-		r := d.Intn(5)
-		// num 是对r进行取整
-		num := int(r)
+	nums := GenerateRandSlice(5,3)
 
-		//查重
-		exist := false
-		for _, v := range nums {
-			if v == num {
-				exist = true
-				break
-			}
-		}
-
-		if !exist {
-			nums = append(nums, num)
-		}
-	}
-
-	for i := 0; i < 3; i++ {
+	for i := 0; i < len(nums); i++ {
 		//对elemPut进行赋值
 		r := nums[i]
 		if i <= 1 {
@@ -71,161 +41,18 @@ func Reservation( n coordinate){
 
 	putMap[n] = elemPut
 
-	PrintMap(n)
+	calculateLeft(n)
 
 }
 
 
 
-func ClosedLand( n coordinate)  {
+func ClosedLand( n Coordinate)  {
 
-	elemPut := [5]int{0}
+	elemPut := closedElementMap[n]
 
-	var distances_gold  [23]float64
-	var distances_wood  [85]float64
-	var distances_lake  [30]float64
-	var distances_fire  [12]float64
-	var distances_earth [32]float64
-
-	for i :=0; i < len(wood); i++{
-		// 计算两点之间的距离   距离木
-		x := float64(n.x) - float64(wood[i].x)
-		y := float64(n.y) - float64(wood[i].y)
-		x_o := math.Pow(x,2)
-		y_o := math.Pow(y,2)
-		r := math.Sqrt(x_o + y_o)
-
-		distances_wood[i] = r
-	}
-
-	for i :=0; i < len(gold); i++{
-		// 计算两点之间的距离   距离金
-		x := float64(n.x) - float64(gold[i].x)
-		y := float64(n.y) - float64(gold[i].y)
-		x_o := math.Pow(x,2)
-		y_o := math.Pow(y,2)
-		r := math.Sqrt(x_o + y_o)
-
-		distances_gold[i] = r
-	}
-
-	for i :=0; i < len(lake); i++{
-		// 计算两点之间的距离      距离水
-		x := float64(n.x) - float64(lake[i].x)
-		y := float64(n.y) - float64(lake[i].y)
-		x_o := math.Pow(x,2)
-		y_o := math.Pow(y,2)
-		r := math.Sqrt(x_o + y_o)
-
-		distances_lake[i] = r
-	}
-
-
-	for i :=0; i < len(fire); i++{
-		// 计算两点之间的距离        距离火
-		x := float64(n.x) - float64(fire[i].x)
-		y := float64(n.y) - float64(fire[i].y)
-		x_o := math.Pow(x,2)
-		y_o := math.Pow(y,2)
-		r := math.Sqrt(x_o + y_o)
-
-		distances_fire[i] = r
-	}
-
-
-	for i :=0; i < len(earth); i++{
-		// 计算两点之间的距离     距离土    j
-		x := float64(n.x) - float64(earth[i].x)
-		y := float64(n.y) - float64(earth[i].y)
-		x_o := math.Pow(x,2)
-		y_o := math.Pow(y,2)
-		r := math.Sqrt(x_o + y_o)
-
-		distances_earth[i] = r
-	}
-
-	min_gold := 1000.0
-	for i := 0; i < len(distances_gold); i++{
-		if min_gold > distances_gold[i] {
-			min_gold = distances_gold[i]
-		}
-	}
-	if min_gold <= 3.0{
-		addition := 1 + 1.0/min_gold
-		elemPut[0] = int(100 * addition)
-	}
-
-	min_wood := 1000.0
-	for i := 0; i < len(distances_wood); i++{
-		if min_wood > distances_wood[i] {
-			min_wood = distances_wood[i]
-		}
-	}
-	if min_wood <= 3.0{
-		addition := 1 + 1.0/min_wood
-		elemPut[1] = int(100 * addition)
-	}
-
-	min_lake := 1000.0
-	for i := 0; i < len(distances_lake); i++{
-		if min_lake > distances_lake[i]{
-			min_lake = distances_lake[i]
-		}
-	}
-	if min_lake <= 3.0{
-		addition := 1 + 1.0/min_lake
-		elemPut[2] = int(100 * addition)
-	}
-
-	min_fire := 1000.0
-	for i := 0; i < len(distances_fire); i++{
-		if min_fire > distances_fire[i]{
-			min_fire = distances_fire[i]
-		}
-	}
-	if min_fire <= 3.0{
-		addition := 1 + 1.0/min_fire
-		elemPut[3] = int(100 * addition)
-	}
-
-
-	min_earth := 1000.0
-	for i := 0; i < len(distances_earth); i++{
-		if min_earth > distances_earth[i]{
-			min_earth = distances_earth[i]
-		}
-	}
-	if min_earth <= 3.0{
-		addition := 1 + 1.0/min_earth
-		elemPut[4] = int(100 * addition)
-	}
-
-
-
-	// 利用时间作为随机数种子
-	//rand.Seed(time.Now().Unix())
-	d := rand.New(rand.NewSource(time.Now().UnixNano()))
 	//存放结果的slice
-	nums := make([]int, 0)
-	for i := 0; i < 10; i++{
-		// r 是生成0~5的随机数
-		r := d.Intn(5)
-		// num 是对r进行取整
-		num := int(r)
-
-		//查重
-		exist := false
-		for _, v := range nums {
-			if v == num {
-				exist = true
-				break
-			}
-		}
-
-		if !exist {
-			nums = append(nums, num)
-		}
-	}
+	nums := GenerateRandSlice(5,2)
 
 
  // 距离金木水火土小于等于3的地块，还会随机输出其他元素
@@ -262,37 +89,15 @@ func ClosedLand( n coordinate)  {
 	}
 
 	putMap[n] = elemPut
-	PrintMap(n)
+	calculateLeft(n)
 
 }
 func OtherLandSect() [5]int {
 	elemPut := [5]int{0}
-	// 利用时间作为随机数种子
-	//rand.Seed(time.Now().Unix())
-	d := rand.New(rand.NewSource(time.Now().UnixNano()))
-	//存放结果的slice
-	nums := make([]int, 0)
-	for i := 0; i < 10; i++{
-		// r 是生成0~5的随机数
-		r := d.Intn(5)
-		// num 是对r进行取整
-		num := int(r)
-
-		//查重
-		exist := false
-		for _, v := range nums {
-			if v == num {
-				exist = true
-				break
-			}
-		}
-
-		if !exist {
-			nums = append(nums, num)
-		}
-	}
+	nums := GenerateRandSlice(5,2)
 
 	//再产生0~2的随机数
+	d := rand.New(rand.NewSource(time.Now().UnixNano()))
 	r := d.Intn(2)
 	num := int(r)
 
@@ -331,7 +136,7 @@ func OtherLandSect_() [5]int {
 	return elemPut
 }
 
-func OtherLand(n coordinate)  {
+func OtherLand(n Coordinate)  {
 
 	elemPut  := OtherLandSect()
 	// 如果出现(0 0 0 0 0)，则重新进行计算。产生(0 0 0 100 0 ) (100 0 0 100 0)两种情况，因为金和火剩余的比较多
@@ -340,40 +145,40 @@ func OtherLand(n coordinate)  {
 	}
 	putMap[n] = elemPut
 
-	PrintMap(n)
+	calculateLeft(n)
 
 }
 
-func GoldLand(n coordinate)  {
+func GoldLand(n Coordinate)  {
 	putMap[n] = [5]int{400,0,0,0,0}
 
-	PrintMap(n)
+	calculateLeft(n)
 }
-func WoodLand(n coordinate)  {
+func WoodLand(n Coordinate)  {
 	putMap[n] = [5]int{0,400,0,0,0}
 
-	PrintMap(n)
+	calculateLeft(n)
 }
-func LakeLand(n coordinate)  {
+func LakeLand(n Coordinate)  {
 	putMap[n] = [5]int{0,0,400,0,0}
 
-	PrintMap(n)
+	calculateLeft(n)
 }
-func FireLand(n coordinate)  {
+func FireLand(n Coordinate)  {
 	putMap[n] = [5]int{0,0,0,400,0}
 
-	PrintMap(n)
+	calculateLeft(n)
 }
-func EarthLand(n coordinate)  {
+func EarthLand(n Coordinate)  {
 	putMap[n] = [5]int{0,0,0,0,400}
 
-	PrintMap(n)
+	calculateLeft(n)
 }
 
 
 
 
-func	Traverse(){
+func Fill(){
 	//fmt.Println("----------中心保留地-----------")
 	for i := 0; i < len(reservation_center); i++{
 		Reservation(reservation_center[i])
@@ -383,7 +188,7 @@ func	Traverse(){
 	for i := 0; i < len(reservation_other); i++{
 		ClosedLand(reservation_other[i])
 	}*/
-	//ClosedLand(coordinate{-71,1})
+	//ClosedLand(Coordinate{-71,1})
 
 	//fmt.Println("----------金矿山-----------")
 	for i := 0; i < len(gold); i++{
@@ -423,28 +228,27 @@ func	Traverse(){
 	}
 
 
+	for i := cordRange.minx; i <= cordRange.maxx; i++{
+		Addition(Coordinate{i,cordRange.maxy})
+	}
 
-	for i := -112; i <= -68; i++{
-		Addition(coordinate{i,22})
+	for i := cordRange.minx; i <= cordRange.maxx; i++{
+		Addition(Coordinate{i,cordRange.miny})
+	}
+
+	for i := cordRange.miny+1; i <= cordRange.maxy-1; i++{
+		Addition(Coordinate{cordRange.minx,i})
 	}
 
 
-	for i := 21; i >= -22; i--{
-		Addition(coordinate{-68,i})
-	}
-
-	for i := -112; i <= -67; i++{
-		Addition(coordinate{i,-22})
-	}
-
-	for i := -21; i <= 21; i++{
-		Addition(coordinate{-112,i})
+	for i := cordRange.maxy-1; i >= cordRange.miny+1; i--{
+		Addition(Coordinate{cordRange.maxx,i})
 	}
 
 }
 
 
-func PrintMap(n coordinate)  {
+func calculateLeft(n Coordinate)  {
 
 	elemPut, _ := putMap[n]
 
@@ -452,64 +256,30 @@ func PrintMap(n coordinate)  {
 	for i := 0; i < 5; i++{
 		leftNum[i] = leftNum[i] - elemPut[i]
 	}
-
 	//fmt.Printf("[ %+v=>%+v ]\n",n,elemPut)
-
 }
 
+var dataFilePath = "./data/resource.json"
 
-
-func PrintAll()  {
-
-	for i := 22 ; i >= -22; i--{
-		for j := -112; j <= -68; j++{
-			elemPut, _ := putMap[coordinate{j,i}]
-			fmt.Printf("(")
-			for n := 0; n < len(elemPut); n++{
-				if elemPut[n] == 0{
-					fmt.Printf("  %d ",elemPut[n])
-				}else {
-					fmt.Printf("%d ", elemPut[n])
-				}
-			}
-			fmt.Printf(")  ")
-			//fmt.Printf("%+v, ",elemPut)
-			/*if elemPut == [5]int{0,0,0,0,0}{
-				fmt.Println(coordinate{j,i})
-			}*/
+func SaveFile() {
+	var lands = []Resource{}
+	for j := cordRange.miny; j <= cordRange.maxy; j++ {
+		for i := cordRange.minx; i <= cordRange.maxx; i++ {
+			v := putMap[Coordinate{i,j}]
+			lands = append(lands,Resource{Gold: v[GOLD],Wood: v[WOOD],Water: v[WATER],Fire: v[FIRE],Earth: v[EARTH],Coordinate:Coordinate{i,j}})
 		}
-		fmt.Println()
 	}
-
-
+	data, _ := json.MarshalIndent(lands, "", "  ")
+	_ = ioutil.WriteFile(dataFilePath, data, 0644)
 }
 
-func Addition(n coordinate)  {
+func Addition(n Coordinate)  {
 
 	elemPut := putMap[n]
 
 	d := rand.New(rand.NewSource(time.Now().UnixNano()))
 	//存放结果的slice
-	nums := make([]int, 0)
-	for i := 0; i < 10; i++{
-		// r 是生成0~5的随机数
-		r := d.Intn(5)
-		// num 是对r进行取整
-		num := int(r)
-
-		//查重
-		exist := false
-		for _, v := range nums {
-			if v == num {
-				exist = true
-				break
-			}
-		}
-
-		if !exist {
-			nums = append(nums, num)
-		}
-	}
+	nums := GenerateRandSlice(5,3)
 
 	//再产生0~2的随机数
 	r := d.Intn(2)
@@ -531,38 +301,8 @@ func Addition(n coordinate)  {
 		}
 	}
 
-
-
 	putMap[n] = elemPut
 
-
 }
 
-func FindNum()  {
-
-	for i := 0; i < 5; i++{
-		uesdNum[i] = 100000-leftNum[i]
-		fmt.Println(uesdNum[i])
-	}
-	fmt.Println("----------")
-	for i := 0; i < 5; i++{
-		fmt.Println(leftNum[i])
-	}
-}
-
-// 把总的元素加起来，打印出来
-func SumAll()  {
-	for i := -112 ; i <= -68; i++{
-		for j := -22; j <= 22; j++{
-			elemPut, _ := putMap[coordinate{i,j}]
-			for n := 0; n < 5; n++{
-				all[n] = all[n] + elemPut[n]
-			}
-		}
-
-	}
-
-	fmt.Println(all)
-
-}
 
