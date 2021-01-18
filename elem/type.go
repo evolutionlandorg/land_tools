@@ -6,9 +6,12 @@ const (
 	WATER
 	FIRE
 	EARTH
+	RESERVED
 )
 
-var Elements = []int{GOLD,WOOD,WATER,FIRE,EARTH}
+var ElementsMap = map[string]int {"gold":GOLD,"wood":WOOD,"water":WATER,"fire":FIRE,"earth":EARTH}
+var AllMap = map[string]int {"gold":GOLD,"wood":WOOD,"water":WATER,"fire":FIRE,"earth":EARTH,"reserved":RESERVED}
+
 
 type Range struct {
 	minx, maxx,miny,maxy int

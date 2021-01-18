@@ -61,3 +61,7 @@ func GenerateRandSlice(randNum,length int) (nums []int){
 	}
 	return
 }
+
+func Float2Int(val interface{}) int {
+	return int(val.(float64))
+}

@@ -6,6 +6,7 @@ import (
 
 
 func main() {
+	elem.LoadResource()
 	elem.FindClosed()
 	elem.FindOtherLand()
 	elem.Fill()

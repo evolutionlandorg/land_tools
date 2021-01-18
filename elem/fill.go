@@ -180,8 +180,8 @@ func EarthLand(n Coordinate)  {
 
 func Fill(){
 	//fmt.Println("----------中心保留地-----------")
-	for i := 0; i < len(reservation_center); i++{
-		Reservation(reservation_center[i])
+	for i := 0; i < len(reserved); i++{
+		Reservation(reserved[i])
 	}
 
 	/*fmt.Println("----------其余保留地-----------")
@@ -201,8 +201,8 @@ func Fill(){
 	}
 
 	//fmt.Println("----------湖泊-----------")
-	for i := 0; i < len(lake); i++{
-		LakeLand(lake[i])
+	for i := 0; i < len(water); i++{
+		LakeLand(water[i])
 	}
 
 	//fmt.Println("----------火山-----------")

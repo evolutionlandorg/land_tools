@@ -11,7 +11,7 @@ func findClosedLand(n Coordinate) {
 
 	var distances_gold  = make([]float64,len(gold))
 	var distances_wood  = make([]float64,len(wood))
-	var distances_lake  = make([]float64,len(lake))
+	var distances_lake  = make([]float64,len(water))
 	var distances_fire  = make([]float64,len(fire))
 	var distances_earth = make([]float64,len(earth))
 
@@ -23,8 +23,8 @@ func findClosedLand(n Coordinate) {
 		distances_gold[i] = CalculateDistance(n,gold[i])
 	}
 
-	for i :=0; i < len(lake); i++{
-		distances_lake[i] = CalculateDistance(n,lake[i])
+	for i :=0; i < len(water); i++{
+		distances_lake[i] = CalculateDistance(n, water[i])
 	}
 
 	for i :=0; i < len(fire); i++{
@@ -71,7 +71,7 @@ func findClosedLand(n Coordinate) {
 
 
 func FindClosed()  {
-	resources := MergeSlice(gold,wood,lake,fire,earth,reservation_center)
+	resources := MergeSlice(gold,wood, water,fire,earth, reserved)
 	for i := cordRange.minx; i <= cordRange.maxx; i++ {
 		for j := cordRange.miny; j <= cordRange.maxy; j++ {
 			if !IsExist(Coordinate{i,j},resources) {
