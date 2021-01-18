@@ -1,13 +1,14 @@
 package main
 
 import (
-	"map/elem"
+	"land_tools/elem"
 )
 
 
 func main() {
-	src.FindClosed()
-	src.FindOtherLand()
-	src.Traverse()
-	src.PrintAll()
+	elem.LoadResource()
+	elem.FindClosed()
+	elem.FindOtherLand()
+	elem.Fill()
+	elem.SaveFile()
 }
