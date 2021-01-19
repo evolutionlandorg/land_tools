@@ -1,8 +1,6 @@
 package elem
 
 import (
-	"encoding/json"
-	"io/ioutil"
 	"math/rand"
 	"time"
 )
@@ -257,20 +255,6 @@ func calculateLeft(n Coordinate)  {
 		leftNum[i] = leftNum[i] - elemPut[i]
 	}
 	//fmt.Printf("[ %+v=>%+v ]\n",n,elemPut)
-}
-
-var dataFilePath = "./data/resource.json"
-
-func SaveFile() {
-	var lands = []Resource{}
-	for j := cordRange.miny; j <= cordRange.maxy; j++ {
-		for i := cordRange.minx; i <= cordRange.maxx; i++ {
-			v := putMap[Coordinate{i,j}]
-			lands = append(lands,Resource{Gold: v[GOLD],Wood: v[WOOD],Water: v[WATER],Fire: v[FIRE],Earth: v[EARTH],Coordinate:Coordinate{i,j}})
-		}
-	}
-	data, _ := json.MarshalIndent(lands, "", "  ")
-	_ = ioutil.WriteFile(dataFilePath, data, 0644)
 }
 
 func Addition(n Coordinate)  {
