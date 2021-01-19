@@ -6,8 +6,8 @@ import (
 	"time"
 )
 
-func CalculateDistance(from,to Coordinate) (distance float64){
-	distance = math.Sqrt(math.Pow(float64(from.X) - float64(to.X),2) + math.Pow(float64(from.Y) - float64(to.Y),2))
+func CalculateDistance(from, to Coordinate) (distance float64) {
+	distance = math.Sqrt(math.Pow(float64(from.X)-float64(to.X), 2) + math.Pow(float64(from.Y)-float64(to.Y), 2))
 	return
 }
 
@@ -24,9 +24,9 @@ func MinVal(array []float64) float64 {
 	return min
 }
 
-func IsExist(cord Coordinate,list []Coordinate) (exist bool){
+func IsExist(cord Coordinate, list []Coordinate) (exist bool) {
 	for n := 0; n < len(list); n++ {
-		if  cord.X == list[n].X && cord.Y == list[n].Y {
+		if cord.X == list[n].X && cord.Y == list[n].Y {
 			exist = true
 			break
 		}
@@ -34,14 +34,14 @@ func IsExist(cord Coordinate,list []Coordinate) (exist bool){
 	return
 }
 
-func MergeSlice(resources ...[]Coordinate) (merged []Coordinate){
+func MergeSlice(resources ...[]Coordinate) (merged []Coordinate) {
 	for _, r := range resources {
 		merged = append(merged, r...)
 	}
 	return
 }
 
-func GenerateRandSlice(randNum,length int) (nums []int){
+func GenerateRandSlice(randNum, length int) (nums []int) {
 	d := rand.New(rand.NewSource(time.Now().UnixNano()))
 	for {
 		num := d.Intn(randNum)
@@ -55,13 +55,9 @@ func GenerateRandSlice(randNum,length int) (nums []int){
 		if !exist {
 			nums = append(nums, num)
 		}
-		if len(nums)==length{
+		if len(nums) == length {
 			break
 		}
 	}
 	return
-}
-
-func Float2Int(val interface{}) int {
-	return int(val.(float64))
 }

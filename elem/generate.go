@@ -2,80 +2,83 @@ package elem
 
 const DistanceThreshhold = 3
 
-var closed []Coordinate
-
-var closedElementMap = make(map[Coordinate] [5]int)
-
+var (
+	closed           []Coordinate
+	other            []Coordinate
+	closedElementMap = make(map[Coordinate][5]int)
+)
 
 func findClosedLand(n Coordinate) {
 
-	var distances_gold  = make([]float64,len(gold))
-	var distances_wood  = make([]float64,len(wood))
-	var distances_lake  = make([]float64,len(water))
-	var distances_fire  = make([]float64,len(fire))
-	var distances_earth = make([]float64,len(earth))
+	var distancesGold = make([]float64, len(gold))
+	var distancesWood = make([]float64, len(wood))
+	var distancesLake = make([]float64, len(water))
+	var distancesFire = make([]float64, len(fire))
+	var distancesEarth = make([]float64, len(earth))
 
-	for i :=0; i < len(wood); i++{
-		distances_wood[i] = CalculateDistance(n,wood[i])
+	for i := 0; i < len(wood); i++ {
+		distancesWood[i] = CalculateDistance(n, wood[i])
 	}
 
-	for i :=0; i < len(gold); i++{
-		distances_gold[i] = CalculateDistance(n,gold[i])
+	for i := 0; i < len(gold); i++ {
+		distancesGold[i] = CalculateDistance(n, gold[i])
 	}
 
-	for i :=0; i < len(water); i++{
-		distances_lake[i] = CalculateDistance(n, water[i])
+	for i := 0; i < len(water); i++ {
+		distancesLake[i] = CalculateDistance(n, water[i])
 	}
 
-	for i :=0; i < len(fire); i++{
-		distances_fire[i] = CalculateDistance(n,fire[i])
+	for i := 0; i < len(fire); i++ {
+		distancesFire[i] = CalculateDistance(n, fire[i])
 	}
 
-	for i :=0; i < len(earth); i++{
-		distances_earth[i] = CalculateDistance(n,earth[i])
+	for i := 0; i < len(earth); i++ {
+		distancesEarth[i] = CalculateDistance(n, earth[i])
 	}
 
-	min_gold := MinVal(distances_gold)
-	min_wood := MinVal(distances_wood)
-	min_lake := MinVal(distances_lake)
-	min_fire := MinVal(distances_fire)
-	min_earth := MinVal(distances_earth)
+	minGold := MinVal(distancesGold)
+	minWood := MinVal(distancesWood)
+	minLake := MinVal(distancesLake)
+	minFire := MinVal(distancesFire)
+	minEarth := MinVal(distancesEarth)
 
 	elemPut := [5]int{0}
 
-	weight := func(val float64) int{
-		return int(100 * 1 + 1.0/val)
+	weight := func(val float64) int {
+		return int(100*1 + 1.0/val)
 	}
 
-	if min_gold <= DistanceThreshhold{
-		elemPut[GOLD] = weight(min_gold)
+	if minGold <= DistanceThreshhold {
+		elemPut[GOLD] = weight(minGold)
 	}
-	if min_wood <= DistanceThreshhold{
-		elemPut[WOOD] = weight(min_wood)
+	if minWood <= DistanceThreshhold {
+		elemPut[WOOD] = weight(minWood)
 	}
-	if min_lake <= DistanceThreshhold{
-		elemPut[WATER] = weight(min_lake)
+	if minLake <= DistanceThreshhold {
+		elemPut[WATER] = weight(minLake)
 	}
-	if min_fire <= DistanceThreshhold{
-		elemPut[FIRE] = weight(min_fire)
+	if minFire <= DistanceThreshhold {
+		elemPut[FIRE] = weight(minFire)
 	}
-	if min_earth <= DistanceThreshhold{
-		elemPut[EARTH] = weight(min_earth)
+	if minEarth <= DistanceThreshhold {
+		elemPut[EARTH] = weight(minEarth)
 	}
 
-	if min_gold <= DistanceThreshhold || min_wood <= DistanceThreshhold || min_lake <= DistanceThreshhold || min_fire <= DistanceThreshhold || min_earth <= DistanceThreshhold{
-		closed = append(closed,n)
+	if minGold <= DistanceThreshhold || minWood <= DistanceThreshhold || minLake <= DistanceThreshhold || minFire <= DistanceThreshhold || minEarth <= DistanceThreshhold {
+		closed = append(closed, n)
 		closedElementMap[n] = elemPut
+	} else {
+		other = append(other, n)
 	}
 }
 
+func FindBarren() {
+	resources := MergeSlice(gold, wood, water, fire, earth, reserved)
 
-func FindClosed()  {
-	resources := MergeSlice(gold,wood, water,fire,earth, reserved)
 	for i := cordRange.minx; i <= cordRange.maxx; i++ {
 		for j := cordRange.miny; j <= cordRange.maxy; j++ {
-			if !IsExist(Coordinate{i,j},resources) {
-				findClosedLand(Coordinate{i,j})
+			if !IsExist(Coordinate{i, j}, resources) {
+				findClosedLand(Coordinate{i, j})
 			}
 		}
 	}

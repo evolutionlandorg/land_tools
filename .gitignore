@@ -1,14 +1,9 @@
 .idea
-cmd/cmd
 log/*
 node_modules
 bin/*
-application.toml
-configs/grpc.toml
-configs/http.toml
-configs/mysql.toml
-configs/redis.toml
 .env
 .DS_Store
 data/*
 /cmd/.python-version
+land_resource.json
