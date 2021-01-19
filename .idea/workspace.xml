@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0154d1f7-2967-46af-8501-bec4b93f069c" name="Default" comment="refactor code">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elem/common.go" beforeDir="false" afterPath="$PROJECT_DIR$/elem/common.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elem/generate.go" beforeDir="false" afterPath="$PROJECT_DIR$/elem/generate.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elem/other.go" beforeDir="false" afterPath="$PROJECT_DIR$/elem/other.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elem/resource.go" beforeDir="false" afterPath="$PROJECT_DIR$/elem/resource.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elem/type.go" beforeDir="false" afterPath="$PROJECT_DIR$/elem/type.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input.json" beforeDir="false" afterPath="$PROJECT_DIR$/input.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource.json" afterDir="false" />
-    </list>
-    <list id="8c0f68e6-7bc8-40bf-a724-3450b4571bc3" name="no" comment="">
+    <list default="true" id="f8f09346-381d-47a3-ad2c-cc58d00282e0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/elem/random.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/r.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/land_tools.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/land_tools.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elem/fill.go" beforeDir="false" afterPath="$PROJECT_DIR$/elem/fill.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elem/generate.go" beforeDir="false" afterPath="$PROJECT_DIR$/elem/closed.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elem/resource.go" beforeDir="false" afterPath="$PROJECT_DIR$/elem/resource.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map/resource.html" beforeDir="false" afterPath="$PROJECT_DIR$/map/resource.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,133 +21,48 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/main.go" />
-      </list>
-    </option>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths />
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="364" />
-    <option name="y" value="30" />
-    <option name="width" value="1394" />
-    <option name="height" value="877" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="land_tools" type="b2602c69:ProjectViewProjectNode" />
-              <item name="land_tools" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="land_tools" type="b2602c69:ProjectViewProjectNode" />
-              <item name="land_tools" type="462c0819:PsiDirectoryNode" />
-              <item name="elem" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectId" id="1nHR8cZe5QROkPVmjeuygDucoH1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
-    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
-    <property name="go.gopath.indexing.explicitly.defined" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="364" y="30" width="1394" height="877" extended-state="0" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-    </layout>
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+    <proxy>direct</proxy>
   </component>
   <component name="WindowStateProjectService">
-    <state x="320" y="95" key="#GOROOT" timestamp="1611044781944">
+    <state x="295" y="23" key="CommitChangelistDialog2" timestamp="1611047058626">
+      <screen x="0" y="23" width="1440" height="792" />
+    </state>
+    <state x="295" y="23" key="CommitChangelistDialog2/0.23.1440.792/0.-1177.1920.1177@0.23.1440.792" timestamp="1611047058626" />
+    <state x="0" y="23" width="1440" height="795" key="MergeDialog" timestamp="1611045140086">
       <screen x="0" y="23" width="1440" height="795" />
     </state>
-    <state x="320" y="95" key="#GOROOT/0.23.1440.795/0.-1177.1920.1177@0.23.1440.795" timestamp="1611044781944" />
-    <state x="344" y="23" key="CommitChangelistDialog2" timestamp="1611044700204">
+    <state x="0" y="23" width="1440" height="795" key="MergeDialog/0.23.1440.795/0.-1177.1920.1177@0.23.1440.795" timestamp="1611045140086" />
+    <state x="433" y="138" key="MultipleFileMergeDialog" timestamp="1611045140161">
       <screen x="0" y="23" width="1440" height="795" />
     </state>
-    <state x="344" y="23" key="CommitChangelistDialog2/0.23.1440.795/0.-1177.1920.1177@0.23.1440.795" timestamp="1611044700204" />
-    <state x="144" y="91" key="DiffContextDialog" timestamp="1611044699917">
-      <screen x="0" y="23" width="1440" height="795" />
-    </state>
-    <state x="144" y="91" key="DiffContextDialog/0.23.1440.795/0.-1177.1920.1177@0.23.1440.795" timestamp="1611044699917" />
-    <state x="572" y="337" key="VCS.ChangelistChooser" timestamp="1611044773463">
-      <screen x="0" y="23" width="1440" height="795" />
-    </state>
-    <state x="572" y="337" key="VCS.ChangelistChooser/0.23.1440.795/0.-1177.1920.1177@0.23.1440.795" timestamp="1611044773463" />
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ScopeChooserConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+    <state x="433" y="138" key="MultipleFileMergeDialog/0.23.1440.795/0.-1177.1920.1177@0.23.1440.795" timestamp="1611045140161" />
   </component>
 </project>

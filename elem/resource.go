@@ -57,3 +57,27 @@ func LoadResource() {
 	earth = elementDeal(resource.Earth)
 	reserved = elementDeal(resource.Reserved)
 }
+
+func FillResource() []Resource {
+	var lands []Resource
+	for j := cordRange.miny; j <= cordRange.maxy; j++ {
+		for i := cordRange.minx; i <= cordRange.maxx; i++ {
+			v := putMap[Coordinate{i, j}]
+			lands = append(lands, Resource{Gold: v[GOLD], Wood: v[WOOD], Water: v[WATER], Fire: v[FIRE], Earth: v[EARTH], Coordinate: Coordinate{i, j}})
+		}
+	}
+	return lands
+}
+
+var dataFilePath = "land_resource.json"
+
+func SaveFile() {
+	// var singleLand [][]int
+	// for _, elem := range elems {
+	// 	singleLand = append(singleLand, []int{elem.Gold, elem.Wood, elem.Water, elem.Fire, elem.Earth})
+	// }
+	// b, _ := json.Marshal(singleLand)
+	// fmt.Println(string(b))
+	data, _ := json.MarshalIndent(elems, "", "  ")
+	_ = ioutil.WriteFile(dataFilePath, data, 0644)
+}
