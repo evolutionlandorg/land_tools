@@ -10,5 +10,6 @@ func main() {
 	elem.FindClosed()
 	elem.FindOtherLand()
 	elem.Fill()
+	elem.Random()
 	elem.SaveFile()
 }
