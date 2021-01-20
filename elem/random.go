@@ -1,15 +1,27 @@
 package elem
 
 import (
+	"fmt"
 	"math/rand"
 	"time"
 )
 
 var elems []Resource
 
+func fillResource() []Resource {
+	var lands []Resource
+	for j := cordRange.miny; j <= cordRange.maxy; j++ {
+		for i := cordRange.minx; i <= cordRange.maxx; i++ {
+			v := putMap[Coordinate{i, j}]
+			lands = append(lands, Resource{Gold: v[GOLD], Wood: v[WOOD], Water: v[WATER], Fire: v[FIRE], Earth: v[EARTH], IsSpecial: 0, Coordinate: Coordinate{i, j}})
+		}
+	}
+	return lands
+}
+
 func Random() {
 	d := rand.New(rand.NewSource(time.Now().UnixNano()))
-	elems = FillResource()
+	elems = fillResource()
 	for i := 0; i < len(elems); i++ {
 		r := proRandOne()
 		sum := 0
@@ -92,6 +104,14 @@ func Random() {
 
 		}
 
+		// reserved
+		for _, v := range reserved {
+			if elems[i].Coordinate.X == v.X && elems[i].Coordinate.Y == v.Y {
+				elems[i].IsSpecial = 1
+			}
+		}
+		// location id
+		elems[i].LocationId = locationMap[fmt.Sprintf("%d,%d", elems[i].Coordinate.X, elems[i].Coordinate.Y)]
 	}
 
 	n := d.Intn(2) + 1

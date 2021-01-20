@@ -25,4 +25,6 @@ type Resource struct {
 	Fire       int        `json:"fire"`
 	Earth      int        `json:"earth"`
 	Coordinate Coordinate `json:"coordinate"`
+	IsSpecial  int        `json:"isSpecial"`
+	LocationId int        `json:"location_id"`
 }

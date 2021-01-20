@@ -7,6 +7,8 @@ import (
 
 var gold, wood, water, fire, earth, reserved []Coordinate // full resource land
 
+var locationMap map[string]int
+
 var cordRange Range
 
 var inputFile = "./input.json"
@@ -28,6 +30,7 @@ type InputResource struct {
 	Reserved [][]int
 	Water    [][]int
 	Wood     [][]int
+	Location map[string]int
 }
 
 func LoadResource() {
@@ -56,17 +59,7 @@ func LoadResource() {
 	fire = elementDeal(resource.Fire)
 	earth = elementDeal(resource.Earth)
 	reserved = elementDeal(resource.Reserved)
-}
-
-func FillResource() []Resource {
-	var lands []Resource
-	for j := cordRange.miny; j <= cordRange.maxy; j++ {
-		for i := cordRange.minx; i <= cordRange.maxx; i++ {
-			v := putMap[Coordinate{i, j}]
-			lands = append(lands, Resource{Gold: v[GOLD], Wood: v[WOOD], Water: v[WATER], Fire: v[FIRE], Earth: v[EARTH], Coordinate: Coordinate{i, j}})
-		}
-	}
-	return lands
+	locationMap = resource.Location
 }
 
 var dataFilePath = "land_resource.json"
