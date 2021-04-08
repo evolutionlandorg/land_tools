@@ -3,6 +3,7 @@ package elem
 import (
 	"encoding/json"
 	"io/ioutil"
+	"strconv"
 )
 
 var gold, wood, water, fire, earth, reserved []Coordinate // full resource land
@@ -24,12 +25,12 @@ type LandResource struct {
 
 type InputResource struct {
 	Range    []int
-	Earth    [][]int
-	Fire     [][]int
-	Gold     [][]int
-	Reserved [][]int
-	Water    [][]int
-	Wood     [][]int
+	Earth    [][]string
+	Fire     [][]string
+	Gold     [][]string
+	Reserved [][]string
+	Water    [][]string
+	Wood     [][]string
 	Location map[string]int
 }
 
@@ -45,10 +46,10 @@ func LoadResource() {
 	cordRange.miny = rect[2]
 	cordRange.maxy = rect[3]
 
-	var elementDeal = func(elements [][]int) []Coordinate {
+	var elementDeal = func(elements [][]string) []Coordinate {
 		var list []Coordinate
 		for _, raw := range elements {
-			list = append(list, Coordinate{raw[0], raw[1]})
+			list = append(list, Coordinate{StringToInt(raw[0]), StringToInt(raw[1])})
 		}
 		return list
 	}
@@ -73,4 +74,11 @@ func SaveFile() {
 	// fmt.Println(string(b))
 	data, _ := json.MarshalIndent(elems, "", "  ")
 	_ = ioutil.WriteFile(dataFilePath, data, 0644)
+}
+
+func StringToInt(s string) int {
+	if i, err := strconv.Atoi(s); err == nil {
+		return i
+	}
+	return 0
 }
